@@ -180,7 +180,7 @@ def load_config(args):
     global config
     parser = configparser.RawConfigParser()
     parser.read(args.conf)
-    sections = ["snapraid-btrfs", "snapper", "snapraid", "logging", "email", "smtp", "scrub"]
+    sections = ["snapraid-btrfs", "snapper", "snapraid", "logging", "email", "ntfy", "smtp", "scrub"]
     config = dict((x, defaultdict(lambda: "")) for x in sections)
     for section in parser.sections():
         for (k, v) in parser.items(section):
