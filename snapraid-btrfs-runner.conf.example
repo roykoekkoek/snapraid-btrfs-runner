@@ -42,6 +42,12 @@ to =
 ; maximum email size in KiB
 maxsize = 500
 
+[ntfy]
+; when to send ntfy notification, comma-seperated list of succes,error
+sendon = succes,error
+; which ntfy.sh channel to send the notification in. Will send to ntfy.sh/my-ntfy-channel-name
+channel = my-ntfy-channel-name
+
 [smtp]
 host =
 ; leave empty for default port

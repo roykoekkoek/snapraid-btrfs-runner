@@ -128,6 +128,33 @@ def send_email(success):
         msg.as_string())
     server.quit()
 
+def send_ntfy_notification(success):
+    import urllib.request
+
+    ntfy_channel = "https://ntfy.sh/"+config["ntfy"]["channel"]
+
+    if success:
+        message = "SnapRAID job completed successfully".encode("utf-8")
+        headers = {
+            "Title": "SnapRAID SUCCES",
+            "Tags": "white_check_mark"
+        }
+    else:
+        message = "SnapRAID job failed. Check system for errors logs".encode("utf-8")
+        headers = {
+            "Title": "SnapRAID ERROR",
+            "Tags": "rotating_light"
+        }
+
+    notification = urllib.request.Request(
+        ntfy_channel,
+        data=message,
+        headers=headers,
+         method="POST"
+    )
+
+    with urllib.request.urlopen(notification) as response:
+        result = response.read().decode("utf-8")
 
 def finish(is_success):
     if ("error", "success")[is_success] in config["email"]["sendon"]:
@@ -135,6 +162,13 @@ def finish(is_success):
             send_email(is_success)
         except Exception:
             logging.exception("Failed to send email")
+
+    if ("error", "success")[is_success] in config["ntfy"]["sendon"]:
+        try:
+            send_ntfy_notification(is_success)
+        except Exception:
+            logging.exception("Failed to send ntfy notification")
+    
     if is_success:
         logging.info("Run finished successfully")
     else:
