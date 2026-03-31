@@ -31,6 +31,7 @@ Includes all the snapraid-runner features:
   that number exceeds a set threshold.
 * Can create a size-limited rotated logfile.
 * Can send notification emails after each run or only for failures.
+* Can send notifications via public ntfy.sh channels
 * Can run `scrub` after `sync`
 
 Includes basic snapraid-btrfs features of taking BTRFS snapshots in conjunction with snapraid operations (i.e.

@@ -43,8 +43,8 @@ to =
 maxsize = 500
 
 [ntfy]
-; when to send ntfy notification, comma-seperated list of succes,error
-sendon = succes,error
+; when to send ntfy notification, comma-seperated list of success,error
+sendon = success,error
 ; which ntfy.sh channel to send the notification in. Will send to ntfy.sh/my-ntfy-channel-name
 channel = my-ntfy-channel-name
 
